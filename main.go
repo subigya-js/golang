@@ -68,4 +68,6 @@ func main() {
 
 	PublicFunction()
 	privateFunction()
+
+	fmt.Println("Public variable from myutil package: ", myutil.PublicVariable)
 }
