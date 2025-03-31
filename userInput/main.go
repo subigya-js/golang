@@ -1,13 +1,16 @@
 package main
 
-import "fmt"
+import (
+	"bufio"
+	"fmt"
+	"os"
+)
 
 func main() {
-	var name string
-
 	fmt.Printf("Enter your name: ")
-	fmt.Scan(&name)
 
-	fmt.Println("Hello", name, "welcome to the world of Go programming!")
-	// fmt.Printf("Hello %s welcome to the world of Go programming!\n", name)
+	reader := bufio.NewReader(os.Stdin)
+	name, _ := reader.ReadString('\n')
+
+	fmt.Println("Hello Mr. ", name)
 }
