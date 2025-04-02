@@ -8,6 +8,8 @@ func main() {
 
 	if x > y {
 		fmt.Println(x, "is greater than", y)
+	} else if x == y {
+		fmt.Println(x, "is equal to", y)
 	} else {
 		fmt.Println(y, "is greater than", x)
 	}
