@@ -17,8 +17,20 @@ func main() {
 
 		fmt.Println(counter)
 
-		if counter == 5 {
+		if counter == 10 {
 			break
 		}
+	}
+
+	// Ranger keyword:
+	for index, value:=range numbers {
+		fmt.Println("The number in index",index, "is:", value)
+	}
+
+	// For string
+	text := "Hello world"
+
+	for index, value:=range text {
+		fmt.Println("The character in index",index, "is:", string(value))
 	}
 }
