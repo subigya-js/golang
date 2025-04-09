@@ -81,6 +81,8 @@ func performPostRequest() {
 		fmt.Println("Error while sending POST request:", err)
 	}
 
+	fmt.Println("Res", res)
+
 	data, _ := io.ReadAll(res.Body)
 	fmt.Println("Post data:", string(data))
 
@@ -88,7 +90,70 @@ func performPostRequest() {
 	defer res.Body.Close()
 }
 
+func performUpdateRequest() {
+	const myURL = "https://jsonplaceholder.typicode.com/todos/1"
+
+	todo := Todo{
+		UserId:    2378,
+		Id:        23,
+		Title:     "Complete Go",
+		Completed: true,
+	}
+
+	// Now convert the Todo struct to JSON
+	jsonData, err := json.Marshal(todo)
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
+	}
+
+	// Convert the JSON data to a string
+	jsonString := string(jsonData)
+
+	// Convert the JSON string data into reader
+	jsonReader := strings.NewReader(jsonString)
+
+	// Create PUT request
+	req, err := http.NewRequest("PUT", myURL, jsonReader)
+	if err != nil {
+		fmt.Println("PUT Request Error:", err)
+		return
+	}
+	req.Header.Set("Content-type", "application/json")
+
+	// Send the request.
+	client := http.Client{}
+	res, _ := client.Do(req)
+
+	readResonse, _ := io.ReadAll(res.Body)
+	fmt.Println("Updated data:", string(readResonse))
+
+	defer res.Body.Close()
+}
+
+func performDeleteRequest() {
+	const myURL = "https://jsonplaceholder.typicode.com/todos/1"
+
+	// Create Delete Request
+	req, err := http.NewRequest("DELETE", myURL, nil)
+	if err != nil {
+		fmt.Println("PUT Request Error:", err)
+		return
+	}
+	req.Header.Set("Content-type", "application/json")
+
+	// Send the request.
+	client := http.Client{}
+	res, _ := client.Do(req)
+
+	fmt.Println("Deleted data status code:", res.Status)
+
+	defer res.Body.Close()
+}
+
 func main() {
 	// performGetRequest()
-	performPostRequest()
+	// performPostRequest()
+	// performUpdateRequest()
+	performDeleteRequest()
 }
