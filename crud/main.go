@@ -69,7 +69,7 @@ func performPostRequest() {
 		return
 	}
 
-	// Conver the JSON data to a string
+	// Convert the JSON data to a string
 	jsonString := string(jsonData)
 
 	// Convert the JSON string data into reader
